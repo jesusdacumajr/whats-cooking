@@ -13,7 +13,7 @@ count(recipes, cuisine) %>% arrange(desc(n))
 
 # Find top ingredients per cuisine
 
-topN <- 25
+topN <- 40
 specialIng <- character()
 
 for(i in 1:length(levels(ingredients$cuisine))){
@@ -50,11 +50,14 @@ ingredients$ingredient[grep("gochu", ingredients$ingredient, ignore.case = TRUE)
 ingredients$ingredient[grep("kimchi", ingredients$ingredient, ignore.case = TRUE)] <- "kimchi"
 ingredients$ingredient[grep("shao", ingredients$ingredient, ignore.case = TRUE)] <- "shaoxing wine"
 ingredients$ingredient[grep("masala", ingredients$ingredient, ignore.case = TRUE)] <- "masala"
-ingredients$ingredient[grep("fermented black beans", ingredients$ingredient, ignore.case = TRUE)] <- "chinese douchi"
+ingredients$ingredient[grep("curry paste", ingredients$ingredient, ignore.case = TRUE)] <- "curry paste"
+ingredients$ingredient[grep("fermented black beans", ingredients$ingredient, ignore.case = TRUE)] <- "douchi"
 ingredients$ingredient[grep("black beans", ingredients$ingredient, ignore.case = TRUE)] <- "black beans"
+ingredients$ingredient[grep("five.*spice", ingredients$ingredient, ignore.case = TRUE)] <- "chinese five-spice powder"
 ingredients$ingredient[grep("nori", ingredients$ingredient, ignore.case = TRUE)] <- "nori"
 ingredients$ingredient[grep("avocado", ingredients$ingredient, ignore.case = TRUE)] <- "avocado"
 ingredients$ingredient[grep("andouille", ingredients$ingredient, ignore.case = TRUE)] <- "andouille"
+ingredients$ingredient[grep("mustard seed", ingredients$ingredient, ignore.case = TRUE)] <- "mustard seeds"
 ingredients$ingredient[grep("parmesan", ingredients$ingredient, ignore.case = TRUE)] <- "parmesan"
 ingredients$ingredient[grep("parm.gian", ingredients$ingredient, ignore.case = TRUE)] <- "parmesan"
 ingredients$ingredient[grep("cajun", ingredients$ingredient, ignore.case = TRUE)] <- "cajun-creole seasoning"
@@ -69,15 +72,17 @@ ingredients$ingredient[grep("light soy sauce", ingredients$ingredient, ignore.ca
 ingredients$ingredient[grep("dark soy sauce", ingredients$ingredient, ignore.case = TRUE)] <- "light/dark soy"
 ingredients$ingredient[grep("soy sauce", ingredients$ingredient, ignore.case = TRUE)] <- "soy sauce"
 ingredients$ingredient[grep("oyster.*sauc", ingredients$ingredient, ignore.case = TRUE)] <- "oyster sauce"
-ingredients$ingredient[grep("feta", ingredients$ingredient, ignore.case = TRUE)] <- "feta cheese"
-ingredients$ingredient[grep("sour cream", ingredients$ingredient, ignore.case = TRUE)] <- "sour cream"
 ingredients$ingredient[grep("thai basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
 ingredients$ingredient[grep("asian basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
 ingredients$ingredient[grep("holy basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
 ingredients$ingredient[grep("anise basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
 ingredients$ingredient[grep("basil", ingredients$ingredient, ignore.case = TRUE)] <- "basil"
+ingredients$ingredient[grep("pecan", ingredients$ingredient, ignore.case = TRUE)] <- "pecans"
+ingredients$ingredient[grep("feta", ingredients$ingredient, ignore.case = TRUE)] <- "feta cheese"
+ingredients$ingredient[grep("sour cream", ingredients$ingredient, ignore.case = TRUE)] <- "sour cream"
 ingredients$ingredient[grep("jalapeno", ingredients$ingredient, ignore.case = TRUE)] <- "jalapenos"
 ingredients$ingredient[grep("poblano", ingredients$ingredient, ignore.case = TRUE)] <- "poblanos"
+ingredients$ingredient[grep("corn.*meal", ingredients$ingredient, ignore.case = TRUE)] <- "cornmeal"
 ingredients$ingredient[grep("lemon.?grass", ingredients$ingredient, ignore.case = TRUE)] <- "lemongrass"
 ingredients$ingredient[grep("diced tomato.*chili", ingredients$ingredient, ignore.case = TRUE)] <- "diced tomatoes and chilies"
 ingredients$ingredient[grep("green chil", ingredients$ingredient, ignore.case = TRUE)] <- "green chilies"
@@ -99,6 +104,21 @@ ingredients$ingredient[grep("olive oil mayo", ingredients$ingredient, ignore.cas
 ingredients$ingredient[grep("olive oil", ingredients$ingredient, ignore.case = TRUE)] <- "olive oil"
 ingredients$ingredient[grep("vietnamese coriander", ingredients$ingredient, ignore.case = TRUE)] <- "vietnamese rau ram"
 ingredients$ingredient[grep("coriander", ingredients$ingredient, ignore.case = TRUE)] <- "coriander"
+ingredients$ingredient[grep("kaffir lime", ingredients$ingredient, ignore.case = TRUE)] <- "makrut"
+ingredients$ingredient[grep("lime leaves", ingredients$ingredient, ignore.case = TRUE)] <- "makrut"
+ingredients$ingredient[grep("lime zest", ingredients$ingredient, ignore.case = TRUE)] <- "zest"
+ingredients$ingredient[grep("lime peel", ingredients$ingredient, ignore.case = TRUE)] <- "zest"
+ingredients$ingredient[grep("lime rind", ingredients$ingredient, ignore.case = TRUE)] <- "zest"
+ingredients$ingredient[grep("lemon.*lime", ingredients$ingredient, ignore.case = TRUE)] <- "lemon soda"
+ingredients$ingredient[grep("lime", ingredients$ingredient, ignore.case = TRUE)] <- "lime juice"
+ingredients$ingredient[grep("lime", ingredients$ingredient, ignore.case = TRUE)] <- "lime juice"
+ingredients$ingredient[grep("allspice", ingredients$ingredient, ignore.case = TRUE)] <- "allspice"
+ingredients$ingredient[grep("saffron", ingredients$ingredient, ignore.case = TRUE)] <- "saffron"
+ingredients$ingredient[grep("sherry.*vinegar", ingredients$ingredient, ignore.case = TRUE)] <- "sherry vinegar"
+ingredients$ingredient[grep("yolk", ingredients$ingredient, ignore.case = TRUE)] <- "egg yolks"
+ingredients$ingredient[grep("shallot", ingredients$ingredient, ignore.case = TRUE)] <- "shallots"
+ingredients$ingredient[grep("thyme", ingredients$ingredient, ignore.case = TRUE)] <- "thyme"
+ingredients$ingredient[grep("whip.*cream", ingredients$ingredient, ignore.case = TRUE)] <- "whipping cream"
 
 # cachaca
 # ghee
@@ -106,7 +126,19 @@ ingredients$ingredient[grep("coriander", ingredients$ingredient, ignore.case = T
 # mirin
 # clove
 # baking soda
-# lime and lime juice?
+# preserved lemon
+
+
+# chinese
+# irish
+# italian
+# jamaican
+# japanese
+# korean
+# mexican
+# spanish
+# thai
+# vietnamese
 
 # Exploratory plots
 #boxplot comparisons
