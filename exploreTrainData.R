@@ -36,14 +36,21 @@ for(i in 1:length(specialIng)){
 
 topIng <- arrange(topIng, desc(pct))
 
-# Add features for ethnic ingredients
+# Add features for ethnic ingredients (before cleaning)
 
 features <- recipes[,c(1,2)]
 
-addFeature <- function(pattern){
-    ifelse(features$id 
-           %in% ingredients$id[grep(pattern, ingredients$ingredient, ignore.case = TRUE)],
-           1, 0)
+addFeature <- function(pattern, exact = FALSE){
+    if(!exact){
+        ifelse(features$id 
+               %in% ingredients$id[grep(pattern, ingredients$ingredient, ignore.case = TRUE)],
+               1, 0)        
+    } else{
+        ifelse(features$id 
+               %in% ingredients$id[ingredients$ingredient==pattern],
+               1, 0)
+    }
+
 }
 
 features$chinese <- addFeature("chinese")
@@ -149,6 +156,86 @@ ingredients$ingredient[grep("whip.*cream", ingredients$ingredient, ignore.case =
 # baking soda
 # preserved lemon
 
+# Add features based on ingredients
+
+features$cachaca <- addFeature("cachaca")
+features$tortillas <- addFeature("tortilla")
+features$dashi <- addFeature("dashi")
+features$salsa <- addFeature("salsa")
+features$gochujang <- addFeature("gochu")
+features$kimchi <- addFeature(kimchi)
+features$shaoxing_wine <- addFeature("shao")
+features$masala <- addFeature("masala")
+features$curry_paste <- addFeature("curry paste")
+
+ingredients$ingredient[grep("fermented black beans", ingredients$ingredient, ignore.case = TRUE)] <- "douchi"
+features$black_beans <- addFeature("black beans")
+
+features$five_spice_powder <- addFeature("five.*spice")
+features$nori <- addFeature("nori")
+features$avocado <- addFeature("avocado")
+features$andouille <- addFeature("andouille")
+features$mustard_seed <- addFeature("mustard seed")
+
+ingredients$ingredient[grep("parm.gian", ingredients$ingredient, ignore.case = TRUE)] <- "parmesan"
+features$parmesan <- addFeature("parmesan")
+
+ingredients$ingredient[grep("creole", ingredients$ingredient, ignore.case = TRUE)] <- "cajun-creole seasoning"
+features$cajun-creole_seasoning <- addFeature("cajun")
+
+features$turmeric <- addFeature("tu.*meric")
+features$hoisin_sauce <- addFeature("hoisin")
+features$couscous <- addFeature("couscous")
+
+ingredients$ingredient[grep("cumin ?seed", ingredients$ingredient, ignore.case = TRUE)] <- "cumSeed"
+features$cumin_seed <- addFeature("cumSeed")
+features$cumin <- addFeature("cumin")
+
+features$buttermilk <- addFeature("buttermilk")
+
+ingredients$ingredient[grep("light soy sauce", ingredients$ingredient, ignore.case = TRUE)] <- "light/dark soy sauce"
+features$light_dark_soy_sauce <- addFeature("dark soy sauce")
+features$soy_sauce <- addFeature("soy sauce")
+
+features$oyster_sauce <- addFeature("oyster.*sauc")
+
+ingredients$ingredient[grep("pesto", ingredients$ingredient, ignore.case = TRUE)] <- "pesto"
+features$pesto <- addFeature("pesto")
+
+ingredients$ingredient[grep("thai basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
+ingredients$ingredient[grep("asian basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
+ingredients$ingredient[grep("holy basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
+ingredients$ingredient[grep("anise basil", ingredients$ingredient, ignore.case = TRUE)] <- "asian leaves"
+features$asian_basil <- addFeature("asian leaves")
+features$basil <- addFeature("basil")
+
+features$pecans <- addFeature("pecan")
+features$feta <- addFeature("feta")
+features$sour_cream <- addFeature("sour cream")
+features$jalapenos <- addFeature("jalapeno")
+features$poblanos <- addFeature("poblano")
+features$cornmeal <- addFeature("corn.*meal")
+features$lemongrass <- addFeature("lemon.?grass")
+
+ingredients$ingredient[grep("diced tomato.*chili", ingredients$ingredient, ignore.case = TRUE)] <- "diced tomatoes and chilies"
+features$green_chilies <- addFeature("green chil")
+
+features$chili_powder <- addFeature("chili powder")
+features$curry_powder <- addFeature("curry powder")
+
+ingredients$ingredient[grep("cilantro stem", ingredients$ingredient, ignore.case = TRUE)] <- "cilRoot"
+ingredients$ingredient[grep("cilantro root", ingredients$ingredient, ignore.case = TRUE)] <- "cilRoot"
+features$cilantro <- addFeature("cilantro")
+
+ingredients$ingredient[grep("dry white wine", ingredients$ingredient, ignore.case = TRUE)] <- "white wine"
+features$white_wine <- addFeature("white wine", exact = TRUE)
+
+ingredients$ingredient[grep("Italian parsley", ingredients$ingredient, ignore.case = TRUE)] <- "flat leat parsley"
+ingredients$ingredient[grep("sesame.*oil", ingredients$ingredient, ignore.case = TRUE)] <- "sesame oil"
+ingredients$ingredient[grep("starch", ingredients$ingredient, ignore.case = TRUE)] <- "starch"
+ingredients$ingredient[grep("fish sauce", ingredients$ingredient, ignore.case = TRUE)] <- "fish sauce"
+ingredients$ingredient[grep("beets", ingredients$ingredient, ignore.case = TRUE)] <- "beets"
+    
 # Exploratory plots
 #boxplot comparisons
 #pairwise plot
