@@ -36,6 +36,27 @@ for(i in 1:length(specialIng)){
 
 topIng <- arrange(topIng, desc(pct))
 
+# Add features for ethnic ingredients
+
+features <- recipes[,c(1,2)]
+
+addFeature <- function(pattern){
+    ifelse(features$id 
+           %in% ingredients$id[grep(pattern, ingredients$ingredient, ignore.case = TRUE)],
+           1, 0)
+}
+
+features$chinese <- addFeature("chinese")
+features$irish <- addFeature("irish")
+features$italian <- addFeature("italian")
+features$jamaican <- addFeature("jamaican")
+features$japanese <- addFeature("japanese")
+features$korean <- addFeature("korean")
+features$mexican <- addFeature("mexican")
+features$spanish <- addFeature("spanish")
+features$thai <- addFeature("thai")
+features$vietnamese <- addFeature("vietnamese")
+
 # Clean ingredient names
 
 filter(ingredients, ingredient == "salt") %>% count(cuisine) %>% 
@@ -127,18 +148,6 @@ ingredients$ingredient[grep("whip.*cream", ingredients$ingredient, ignore.case =
 # clove
 # baking soda
 # preserved lemon
-
-
-# chinese
-# irish
-# italian
-# jamaican
-# japanese
-# korean
-# mexican
-# spanish
-# thai
-# vietnamese
 
 # Exploratory plots
 #boxplot comparisons
